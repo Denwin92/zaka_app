@@ -12,14 +12,7 @@ class OnboardingCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // color: Colors.yellow,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [Colors.blue, Colors.green],
-        ),
-      ),
+      color: Colors.transparent,
       height: MediaQuery.of(context).size.height * 0.80,
       width: MediaQuery.of(context).size.width,
       child: Column(
@@ -39,8 +32,8 @@ class OnboardingCard extends StatelessWidget {
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black,
+                style: const TextStyle(
+                    color: Colors.white,
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
@@ -49,7 +42,7 @@ class OnboardingCard extends StatelessWidget {
                 child: Text(
                   description,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w300),

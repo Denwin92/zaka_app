@@ -58,77 +58,73 @@ class _ZakaLoginScreenState extends State<ZakaLoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.green, Colors.blue],
-            )),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset("assets/images/Zaka_logo.png"),
-                        const Text('Login',
-                            style: TextStyle(
-                                color: CupertinoColors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.normal)),
-                        TextFieldWidget(
-                          hintText: "email or phone number",
-                          iconData: Icons.alternate_email,
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/images/Zaka_logo.png"),
+                      const Text('Login',
+                          style: TextStyle(
+                              color: CupertinoColors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.normal)),
+                      TextFieldWidget(
+                        hintText: "email or phone number",
+                        iconData: Icons.alternate_email,
+                        validator: (value) {
+                          return EValidators.instance.validateTextField(value);
+                        },
+                        onSaved: (value) {
+                          context.read<LoginProvider>().username =
+                              value?.trim();
+                        },
+                      ),
+                      TextFieldWidget(
+                          hintText: "Password",
+                          iconData: Icons.password,
+                          obscureText: true,
                           validator: (value) {
                             return EValidators.instance
                                 .validateTextField(value);
                           },
                           onSaved: (value) {
-                            context.read<LoginProvider>().username =
+                            context.read<LoginProvider>().password =
                                 value?.trim();
-                          },
-                        ),
-                        TextFieldWidget(
-                            hintText: "Password",
-                            iconData: Icons.password,
-                            obscureText: true,
-                            validator: (value) {
-                              return EValidators.instance
-                                  .validateTextField(value);
-                            },
-                            onSaved: (value) {
-                              context.read<LoginProvider>().password =
-                                  value?.trim();
-                            }),
-                        ZakaButton(
-                            buttonText: 'Login',
-                            onPressed: () {
-                              _onLoginPressed();
-                            }),
-                      ],
-                    ),
+                          }),
+                      ZakaButton(
+                          buttonText: 'Login',
+                          onPressed: () {
+                            _onLoginPressed();
+                          }),
+                    ],
                   ),
                 ),
-                GestureDetector(
-                  onTap: () => Navigator.pushNamed(context, registrationScreen),
-                  child: const Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                    child: Text(
-                      "Don't have an account? Sign up here!",
-                      style: TextStyle(
-                          color: CupertinoColors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300),
-                    ),
-                  ),
-                )
-              ],
-            )),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => Navigator.pushNamed(context, registrationScreen),
+              child: const Padding(
+                padding: EdgeInsets.only(bottom: 10),
+                child: Text(
+                  "Don't have an account? Sign up here!",
+                  style: TextStyle(
+                      color: CupertinoColors.white,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Colors.white,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w300),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

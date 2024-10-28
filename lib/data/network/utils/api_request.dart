@@ -51,7 +51,12 @@ class ApiRequests {
         return jsonDecode(utf8.decode(response.bodyBytes))
             as Map<String, dynamic>;
       }
+
+      throw APIException(jsonDecode(utf8.decode(response.bodyBytes))['message']);
     } on Exception catch (e) {
+      if(e is APIException){
+        rethrow;
+      }
       throw UnknownException();
     }
 

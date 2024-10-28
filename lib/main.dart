@@ -23,7 +23,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Zaka App',
-      theme: ThemeData(primarySwatch: Colors.grey),
+      theme: ThemeData(
+          primarySwatch: Colors.grey,
+          scaffoldBackgroundColor: Colors.transparent),
+      builder: (_, child) {
+        return Container(
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Colors.green, Colors.blue],
+          )),
+          child: child,
+        );
+      },
       home: const OnboardingScreen(),
       routes: {
         loginScreen: (_) => ChangeNotifierProvider(

@@ -9,45 +9,36 @@ class MainMenuScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Colors.blue, Colors.green],
-            ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 30),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset("assets/images/Zaka_logo.png"),
-                Text("Hello, ${Globals.instance.account.firstName}!", style: TextStyle(
-                  fontSize: 40,
-                  color: Colors.black54,
-                  fontWeight: FontWeight.bold
-                ),),
-                Text('What would you like to do today?', style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 20
-                ),),
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset("assets/images/Zaka_logo.png"),
+              Text("Hello, ${Globals.instance.account.firstName}!", style: TextStyle(
+                fontSize: 40,
+                color: Colors.black54,
+                fontWeight: FontWeight.bold
+              ),),
+              Text('What would you like to do today?', style: TextStyle(
+                color: Colors.black54,
+                fontSize: 20
+              ),),
 
-                ZakaButton(buttonText: "Make A Transfer", onPressed: (){
-                  Navigator.pushNamed(context, bankTransferScreen);
-                }),
-                ZakaButton(buttonText: "View your Details", onPressed: (){
-                  Navigator.pushNamed(context, viewDetailsScreen);
-                }),
-                ZakaButton(buttonText: "Logout", onPressed: (){
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, loginScreen, (Route<dynamic> route) => false);
-                }),
+              ZakaButton(buttonText: "Make A Transfer", onPressed: (){
+                Navigator.pushNamed(context, bankTransferScreen);
+              }),
+              ZakaButton(buttonText: "View your Details", onPressed: (){
+                Navigator.pushNamed(context, viewDetailsScreen);
+              }),
+              ZakaButton(buttonText: "Logout", onPressed: (){
+                Navigator.pushNamedAndRemoveUntil(
+                    context, loginScreen, (Route<dynamic> route) => false);
+              }),
 
-              ],
-            ),
+            ],
           ),
         ),
       ),

@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final List<TextInputFormatter>? textInputFormatter;
   final TextEditingController? textEditingController;
   final bool isEnabled;
+  final String? initialValue;
 
   const TextFieldWidget(
       {super.key,
@@ -23,7 +24,8 @@ class TextFieldWidget extends StatelessWidget {
       this.textInputType,
       this.textInputFormatter,
       this.textEditingController,
-      this.isEnabled = true});
+      this.isEnabled = true,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class TextFieldWidget extends StatelessWidget {
       padding:
           const EdgeInsets.only(left: 30, top: 7.5, right: 30, bottom: 7.5),
       child: TextFormField(
+        initialValue: initialValue,
         controller: textEditingController,
         obscureText: obscureText,
         onSaved: onSaved,
